@@ -44,7 +44,7 @@ function backward_euler(f,t0,y0,Δt,T)
     t, ws = t0, [y0]
     while t < T
         wn = last(ws)
-        sol = nlsolve(x -> wn .+ Δt*f(t+Δt, x) - x, [wn])
+        sol = nlsolve(x -> wn .+ Δt*f.(t+Δt, x) .- x, [wn])
         @assert sol.f_converged
         push!(ws, first(sol.zero))
         t += Δt
@@ -56,7 +56,7 @@ function backward_euler(f,t0,y0::Vector,Δt,T)
     t, ws = t0, [y0]
     while t < T
         wn = last(ws)
-        sol = nlsolve(x -> wn .+ Δt*f(t+Δt, x) - x, wn)
+        sol = nlsolve(x -> wn + Δt*f(t+Δt, x) - x, wn)
         @assert sol.f_converged
         push!(ws, sol.zero)
         t += Δt
@@ -68,7 +68,7 @@ function trapezoid_rule(f,t0,y0,Δt,T)
     t, ws = t0, [y0]
     while t < T
         wn = last(ws)
-        sol = nlsolve(x -> wn .+ Δt/2*(f(t,wn) .+ f(t+Δt, x)) - x, [wn])
+        sol = nlsolve(x -> wn .+ Δt/2*(f.(t,wn) .+ f.(t+Δt, x)) .- x, [wn])
         @assert sol.f_converged
         push!(ws, first(sol.zero))
         t += Δt
@@ -80,8 +80,7 @@ function trapezoid_rule(f,t0,y0::Vector,Δt,T)
     t, ws = t0, [y0]
     while t < T
         wn = last(ws)
-        @show wn
-        sol = nlsolve(x -> wn .+ Δt/2*(f(t,wn) + f(t+Δt, x)) - x, wn)
+        sol = nlsolve(x -> wn + Δt/2*(f(t,wn) + f(t+Δt, x)) - x, wn)
         @assert sol.f_converged
         push!(ws, sol.zero)
         t += Δt
@@ -90,6 +89,6 @@ function trapezoid_rule(f,t0,y0::Vector,Δt,T)
 end
 
 
-ts1, ws1 = backward_euler((t,y)->-y, 0.0, 1.0, 0.01, 2.0)
-ts2, ws2 = trapezoid_rule((t,y)->-y, 0.0, 1.0, 0.01, 2.0)
-ws0 = exp.(-ts1)
+# ts1, ws1 = backward_euler((t,y)->-y, 0.0, 1.0, 0.01, 2.0)
+# ts2, ws2 = trapezoid_rule((t,y)->-y, 0.0, 1.0, 0.01, 2.0)
+# ws0 = exp.(-ts1)

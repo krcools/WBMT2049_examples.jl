@@ -1,5 +1,4 @@
 using Plots
-
 include("methods.jl")
 
 p = 0.01
