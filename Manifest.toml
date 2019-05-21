@@ -223,6 +223,12 @@ git-tree-sha1 = "1367f50271508147104a8503365a793427e653cd"
 uuid = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 version = "0.25.0"
 
+[[Polynomials]]
+deps = ["LinearAlgebra", "SparseArrays", "Test"]
+git-tree-sha1 = "62142bd65d3f8aeb2226ec64dd8493349147df94"
+uuid = "f27b6e38-b328-58d1-80ce-0feddd5e7a45"
+version = "0.5.2"
+
 [[Printf]]
 deps = ["Unicode"]
 uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
