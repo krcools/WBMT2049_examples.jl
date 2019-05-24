@@ -62,3 +62,17 @@ p0 = 0.0
 number_of_iterations = 0
 p, P = picard(g,p0)
 @show number_of_iterations
+
+g(x) = 1/21*(20x+21*x^-2)
+p0 = 1.0
+number_of_iterations = 0
+p, P = picard(g,p0)
+@show number_of_iterations
+a, b = 0.5, 4.0
+
+g(x) = x - (x^3-21)/(3*x^2)
+p0 = 1.0
+number_of_iterations = 0
+p, P = picard(g,p0)
+@show number_of_iterations
+a, b = 0.5, 8.0
