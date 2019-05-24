@@ -23,4 +23,6 @@ Lch = lag_interpolant(Xch,Ych)
 plot();
 plot!(T,f.(T));
 plot!(T,Lch.(T));
-scatter!(Xch,zero(Xch),ylims=(-1,8))
+scatter!(Xch,zero(Xch),ylims=(-1,+1))
+
+plot!()
