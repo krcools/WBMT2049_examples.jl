@@ -1,6 +1,6 @@
 include("lagpoly.jl")
 
-n = 10
+n = 6
 x = range(0, step=1/100, length=101)
 X = range(0, step=1/n, length=n+1)
 plot();

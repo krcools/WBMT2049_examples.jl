@@ -11,8 +11,9 @@ end
 function (s::Spline)(x, k=0)
     i = findfirst(s.X .> x)
     i = (i == nothing) ? length(s.X) : i-1
-    p = Poly([s.D[i],s.C[i],s.B[i],s.A[i]])
-    return polyval(polyder(p,k),x-X[i])
+    p = Polynomial([s.D[i],s.C[i],s.B[i],s.A[i]])
+    dpk = derivative(p,k)
+    return dpk(x-X[i])
 end
 
 function Spline(X,F)
